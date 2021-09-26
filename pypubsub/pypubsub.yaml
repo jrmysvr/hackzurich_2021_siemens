@@ -1,0 +1,46 @@
+# General server settings
+server:
+  port: 2070
+  bind: 0.0.0.0
+  max_payload_size:          102400   # Max size of each JSON payload
+  backlog:
+    size:           0   # Max number of payloads to keep in backlog cache (set to 0 to disable)
+    max_age:      48h   # Maximum age of a backlog item before culling it (set to 0 to never prune on age)
+#    storage: backlog.json  # File-storage for backlog between restarts. Comment out to disable.
+# Client settings
+clients:
+  # Payloaders are clients that are allowed to push events (CIDR-based)
+  payloaders:
+    - 127.0.0.1/24
+    - 10.0.0.1/24
+  # Oldschoolers denotes clients expecting binary events, such as svnwcsub
+  oldschoolers:
+    - svnwcsub
+  # Secure topics are a list of topics that may only be broadcast by certain authenticated users.
+  # Default is nil, which means all topics are allowed by anyone in the allow CIDRs
+  secure_topics: ~
+#  ldap:
+#    uri: ldaps://ldap.example.org
+#    user_dn: uid=%s,ou=people,dc=example,dc=org
+#    base_scope: dc=example,dc=org
+#    membership_patterns:
+#      - member=uid=%s,ou=people,dc=example,dc=org:
+#      - uid=%s
+#    acl:
+#      "cn=syadmins,ou=teams,dc=example,dc=org":
+#          - accounts
+#          - restricted
+#      uid=janedoe,ou=people,dc=example,dc=org:
+#        - accounts
+#        - contracts
+#        - hr
+#sqs:
+#  defaultQueue:
+#    queue: myQueueName.fifo
+#    region: us-east-1
+#    delete: true  # If set, deletes items from SQS as they are processed. Comment out to keep items in SQS
+#    # The below can be commented out to use basic ~/.aws/credentials configuration for the user
+#    key: AWS_ACCESS_KEY_ID
+#    secret: AWS_SECRET_ACCESS_KEY
+
+
