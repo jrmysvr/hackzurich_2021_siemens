@@ -2,12 +2,10 @@ version: "2.2"
 services:
     pypubsub:
         build: pypubsub
-        # ports:
-            # - "2070:2070"
         network_mode: "host"
 
     client:
         build: client
         network_mode: "host"
-        # command: bash -c "sleep 1 && node client.js"
-        command: bash -c "sleep 1 && npm start"
+        #command: bash -c "sleep 1 && npm start"
+        command: bash -c "sleep 1 && ls && cd js-samples && npm i && npm start"
